@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>Upload dist.zip to Worker</h2>
+
+<input type="file" id="fileInput" />
+<br><br>
+<button onclick="send()">Upload</button>
+
+<script>
+async function send() {
+  const file = document.getElementById("fileInput").files[0];
+  if (!file) {
+    alert("No file selected");
+    return;
+  }
+
+  const url = "https://ripkirk.square-art-fc1c.workers.dev/"; // your Worker URL
+
+  const res = await fetch(url, {
+    method: "POST",
+    body: file
+  });
+
+  const text = await res.text();
+  alert(text);
+}
+</script>
+
+</body>
+</html>
